@@ -33,9 +33,11 @@ def colour_query_mouse_callback(event, x, y, flags, param):
     # right button sets colour information at click location to white
 
     elif event == cv2.EVENT_RBUTTONDOWN:
+        # Code for replacing 5x5 block around click to certain colour
         colour = yellow
-        image[y-5:y+5, x-5:x+5] = colour
+        # image[y-5:y+5, x-5:x+5] = colour
         
+        image = cv2.rectangle(cv2.imread('./peppers.png', cv2.IMREAD_COLOR), (y-5, x-5), (y+5,x+5), colour, 2)
 
 
 # ===================================================================
