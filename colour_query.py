@@ -12,6 +12,9 @@ import cv2
 
 # mouse callback function - displays or sets image colour at the click
 # location of the mouse
+black = [0, 0, 0]
+white = [255,255,255]
+yellow = [0, 255, 255]
 
 def colour_query_mouse_callback(event, x, y, flags, param):
 
@@ -22,11 +25,18 @@ def colour_query_mouse_callback(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         # f-string is used here, which only works for python3 : https://realpython.com/python-f-strings/
         print(f"BGR colour at position ({x},{y}) = ({','.join(str(i) for i in image[y,x])})")
-
+        ROI_window_name = "ROI"
+        # ball = img[280:340, 330:390]
+        ROI = image[y-50:y+50, x-50:x+50]
+        cv2.namedWindow(ROI_window_name);
+        cv2.imshow(ROI_window_name, ROI);
     # right button sets colour information at click location to white
 
     elif event == cv2.EVENT_RBUTTONDOWN:
-        image[y,x] = [255,255,255]
+        colour = yellow
+        image[y-5:y+5, x-5:x+5] = colour
+        
+
 
 # ===================================================================
 

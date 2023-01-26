@@ -14,7 +14,7 @@ import cv2
 
 windowName = "Original Image" # window name - for the original image
 windowName2 = "Smoothed Image" # window name 2 - for the smoothed image
-
+windowName3 = "Smoothed Image 2"
 # read an image from the specified file - the cv2.IMREAD_COLOR flag enables reading the image in colour
 
 image = cv2.imread('./peppers.png', cv2.IMREAD_COLOR)
@@ -25,13 +25,17 @@ if not image is None:
 
     # performing smoothing on the image using a 5x5 smoothing mark (see manual entry for GaussianBlur())
 
-    blur = cv2.GaussianBlur(image,(5,5),30)
-
+    blur = cv2.GaussianBlur(image,(15,5),30)
+    blur2 = cv2.GaussianBlur(image, (7,7), 30)
     # display the original image and this blurred image in named windows
 
-    cv2.imshow(windowName, image)
-    cv2.imshow(windowName2, blur)
-
+    # cv2.imshow(windowName, image)
+    # cv2.imshow(windowName2, blur)
+    # cv2.imshow(windowName3, blur2)
+    new_image = cv2.flip(image, 0)
+    # Displaying the image
+    cv2.imshow(windowName, new_image)
+    cv2.imshow(windowName2, image)
     # start the event loop - essential
 
     # cv2.waitKey() is a keyboard binding function (argument is the time in milliseconds).
